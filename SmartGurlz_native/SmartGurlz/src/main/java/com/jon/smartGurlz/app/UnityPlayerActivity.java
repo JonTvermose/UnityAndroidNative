@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class UnityPlayerActivity extends Activity
 {
@@ -109,6 +110,13 @@ public class UnityPlayerActivity extends Activity
         if (event.getAction() == KeyEvent.ACTION_MULTIPLE)
             return mUnityPlayer.injectEvent(event);
         return super.dispatchKeyEvent(event);
+    }
+
+    public void setHighScore(String highscore){
+        String message = "Good job! You score " + highscore + " points!";
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        // TODO - save highscore on the phone (var: lastgame)
+
     }
 
     // Pass any events not handled by (unfocused) views straight to UnityPlayer
