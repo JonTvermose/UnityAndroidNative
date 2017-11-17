@@ -3,15 +3,22 @@ package com.jon.smartGurlz.app;
 import com.unity3d.player.*;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Properties;
 
 public class UnityPlayerActivity extends Activity
 {
@@ -113,9 +120,16 @@ public class UnityPlayerActivity extends Activity
     }
 
     public void setHighScore(String highscore){
-        String message = "Good job! You score " + highscore + " points!";
+        // Save highscore on the phone (var: score)
+        Properties p = new Properties();
+        p.put("score", highscore);
+        try {
+            p.store(new FileOutputStream(getFilesDir() + "score.properties"), null);
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        String message = "Good job! You got " + highscore + " points!";
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-        // TODO - save highscore on the phone (var: lastgame)
 
     }
 
