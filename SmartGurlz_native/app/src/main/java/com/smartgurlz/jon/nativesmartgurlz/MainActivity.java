@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String[] getHighScoresAsStringArray(){
-        int length = MySingleton.getInstance().highscores.size();
+        int length = MySingleton.getInstance().gethighScores().size();
         String[] strings = new String[length];
         for(int i = 0; i < length; i++){
-            UserScore obj = MySingleton.getInstance().highscores.get(i);
+            UserScore obj = MySingleton.getInstance().gethighScores().get(i);
             strings[i] = obj.userName + " : " + obj.score;
         }
         return strings;
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(scoreInt != -999){
 
-                    if(this.isOnHighScore(scoreInt, MySingleton.getInstance().highscores)){
+                    if(this.isOnHighScore(scoreInt, MySingleton.getInstance().gethighScores())){
                         // Start the activity where user can enter their name
                         Intent intent = new Intent(getApplicationContext(), GameEndedActivity.class);
                         intent.putExtra("highScore", scoreInt);
@@ -124,15 +124,15 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         UserScores highscoreHolder = new UserScores();
-        if(MySingleton.getInstance().highscores == null){
+        if(MySingleton.getInstance().gethighScores() == null){
             // Retrieve the highscores from file and parse to java object
             String highscore = p.getProperty("highscores");
             if(highscore != null && !highscore.isEmpty()){
                 highscoreHolder = new Gson().fromJson(highscore, UserScores.class);
-                MySingleton.getInstance().highscores = highscoreHolder.highScoreList;
+                MySingleton.getInstance().setHighscores(highscoreHolder.highScoreList);
             } else {
                 // No highscore saved on phone
-                MySingleton.getInstance().highscores = new ArrayList<UserScore>();
+                MySingleton.getInstance().setHighscores(new ArrayList<UserScore>());
             }
         }
     }

@@ -50,9 +50,9 @@ public class GameEndedActivity extends AppCompatActivity {
                     p.setProperty("score", "-999");
                     // Save the new highscores
                     UserScore newScore = new UserScore(score, playerName);
-                    MySingleton.getInstance().highscores.add(newScore);
+                    MySingleton.getInstance().gethighScores().add(newScore);
                     UserScores highscoreHolder = new UserScores();
-                    highscoreHolder.highScoreList = MySingleton.getInstance().highscores;
+                    highscoreHolder.highScoreList = MySingleton.getInstance().gethighScores();
                     String highscoresJson = new Gson().toJson(highscoreHolder);
                     p.setProperty("highscores", highscoresJson);
                     p.store(new FileOutputStream(getFilesDir() + "score.properties"), null);
