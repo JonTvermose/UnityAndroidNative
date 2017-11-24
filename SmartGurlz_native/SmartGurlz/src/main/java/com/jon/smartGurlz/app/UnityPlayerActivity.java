@@ -119,6 +119,7 @@ public class UnityPlayerActivity extends Activity
         return super.dispatchKeyEvent(event);
     }
 
+    // This method is called by Unity
     public void setHighScore(String highscore){
         // Save highscore on the phone (var: score)
         Properties p = new Properties();
@@ -130,7 +131,6 @@ public class UnityPlayerActivity extends Activity
         }
         String message = "Good job! You got " + highscore + " points!";
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-
     }
 
     // Pass any events not handled by (unfocused) views straight to UnityPlayer
