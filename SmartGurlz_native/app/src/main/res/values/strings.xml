@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NativeSmartGurlz</string>
+    <string name="app_name">SmartGurlz</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_game_ended">GameEndedActivity</string>
 </resources>
